@@ -1,0 +1,14 @@
+# Unable to generate docker-compose script by copilot
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: "distributed_library_service"
+    restart: always
+
