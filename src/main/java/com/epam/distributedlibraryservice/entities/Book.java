@@ -1,11 +1,11 @@
 package com.epam.distributedlibraryservice.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Date;
 import java.util.Set;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "book")

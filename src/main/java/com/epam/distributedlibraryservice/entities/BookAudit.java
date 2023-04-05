@@ -1,11 +1,11 @@
 package com.epam.distributedlibraryservice.entities;
 
 import com.epam.distributedlibraryservice.constants.AuditAction;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Date;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "book_audit")

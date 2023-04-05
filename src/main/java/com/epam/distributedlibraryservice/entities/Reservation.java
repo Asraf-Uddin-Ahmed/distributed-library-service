@@ -1,10 +1,10 @@
 package com.epam.distributedlibraryservice.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Date;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "reservation")
