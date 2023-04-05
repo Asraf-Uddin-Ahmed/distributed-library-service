@@ -16,6 +16,7 @@ address (varchar(255))
 */
 CREATE TABLE user (
     id int NOT NULL AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -29,5 +30,5 @@ CREATE TABLE user (
     city varchar(100),
     address varchar(255),
     PRIMARY KEY (id),
-    UNIQUE INDEX email_UNIQUE (email ASC)
+    UNIQUE INDEX username_UNIQUE (username ASC)
 );
