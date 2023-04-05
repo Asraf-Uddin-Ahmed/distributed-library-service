@@ -73,6 +73,9 @@ CREATE TABLE book (
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
     private Set<BookAudit> bookAudits;
 
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    private Set<Loan> loans;
+
     public Integer getId() {
         return id;
     }
@@ -175,5 +178,13 @@ CREATE TABLE book (
 
     public void setBookAudits(Set<BookAudit> bookAudits) {
         this.bookAudits = bookAudits;
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 }

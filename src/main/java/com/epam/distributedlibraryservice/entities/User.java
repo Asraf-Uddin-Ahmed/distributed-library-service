@@ -53,6 +53,9 @@ public class User {
     @OneToMany(mappedBy = "contributor", fetch = FetchType.LAZY)
     private Set<BookAudit> bookAudits;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Loan> loans;
+
     @PrePersist
     protected void onCreate() {
         creationTime = new Date();
@@ -182,5 +185,13 @@ public class User {
 
     public void setBookAudits(Set<BookAudit> bookAudits) {
         this.bookAudits = bookAudits;
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 }
