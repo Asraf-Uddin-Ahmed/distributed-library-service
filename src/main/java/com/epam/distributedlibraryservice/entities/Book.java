@@ -3,6 +3,7 @@ package com.epam.distributedlibraryservice.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -68,6 +69,9 @@ CREATE TABLE book (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_keeper_id", nullable = false)
     private User currentKeeper;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    private Set<BookAudit> bookAudits;
 
     public Integer getId() {
         return id;
@@ -163,5 +167,13 @@ CREATE TABLE book (
 
     public void setCurrentKeeper(User currentKeeper) {
         this.currentKeeper = currentKeeper;
+    }
+
+    public Set<BookAudit> getBookAudits() {
+        return bookAudits;
+    }
+
+    public void setBookAudits(Set<BookAudit> bookAudits) {
+        this.bookAudits = bookAudits;
     }
 }

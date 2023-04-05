@@ -3,6 +3,7 @@ package com.epam.distributedlibraryservice.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -42,6 +43,15 @@ public class User {
     private String address;
     @Column(name = "city", length = 100)
     private String city;
+
+    @OneToMany(mappedBy = "contributor", fetch = FetchType.LAZY)
+    private Set<Book> booksOfContributor;
+
+    @OneToMany(mappedBy = "currentKeeper", fetch = FetchType.LAZY)
+    private Set<Book> booksOfCurrentKeeper;
+
+    @OneToMany(mappedBy = "contributor", fetch = FetchType.LAZY)
+    private Set<BookAudit> bookAudits;
 
     @PrePersist
     protected void onCreate() {
@@ -148,5 +158,29 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Set<Book> getBooksOfContributor() {
+        return booksOfContributor;
+    }
+
+    public void setBooksOfContributor(Set<Book> booksOfContributor) {
+        this.booksOfContributor = booksOfContributor;
+    }
+
+    public Set<Book> getBooksOfCurrentKeeper() {
+        return booksOfCurrentKeeper;
+    }
+
+    public void setBooksOfCurrentKeeper(Set<Book> booksOfCurrentKeeper) {
+        this.booksOfCurrentKeeper = booksOfCurrentKeeper;
+    }
+
+    public Set<BookAudit> getBookAudits() {
+        return bookAudits;
+    }
+
+    public void setBookAudits(Set<BookAudit> bookAudits) {
+        this.bookAudits = bookAudits;
     }
 }
