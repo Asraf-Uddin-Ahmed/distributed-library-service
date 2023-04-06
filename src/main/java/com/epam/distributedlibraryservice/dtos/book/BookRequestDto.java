@@ -1,5 +1,6 @@
 package com.epam.distributedlibraryservice.dtos.book;
 
+import com.epam.distributedlibraryservice.validators.EmptyISBN;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -22,7 +23,7 @@ public class BookRequestDto {
     @NotBlank
     private String publisher;
 
-    @ISBN
+    @EmptyISBN
     private String isbn;
 
     @NotNull
