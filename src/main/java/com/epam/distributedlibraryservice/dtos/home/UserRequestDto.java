@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @EqualsAndHashCode
-@ToString(callSuper = true)
+@ToString
 @ValidateClassExpression(value = "(#this.password.equals(#this.confirmPassword))", message = ErrorCode.Password.MISMATCH, actionMessage = "This field need to be equals with {dependentFields}", appliedFields = {
         "confirmPassword"}, dependentFields = {"password"})
 public class UserRequestDto {
