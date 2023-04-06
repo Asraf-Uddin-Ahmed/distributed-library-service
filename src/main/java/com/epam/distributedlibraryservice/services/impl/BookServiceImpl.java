@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,4 +33,8 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElseThrow();
     }
 
+    @Override
+    public List<Book> getBooksBy(String title, String author, String genres, Date publicationDate) {
+        return bookRepository.findBooksBy(title, author, genres, publicationDate);
+    }
 }
