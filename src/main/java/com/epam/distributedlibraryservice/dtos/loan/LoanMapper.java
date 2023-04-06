@@ -1,4 +1,4 @@
-package com.epam.distributedlibraryservice.dtos.book;
+package com.epam.distributedlibraryservice.dtos.loan;
 
 import com.epam.distributedlibraryservice.entities.Book;
 import com.epam.distributedlibraryservice.entities.Loan;

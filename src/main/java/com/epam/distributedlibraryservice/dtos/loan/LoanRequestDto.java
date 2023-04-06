@@ -1,4 +1,4 @@
-package com.epam.distributedlibraryservice.dtos.book;
+package com.epam.distributedlibraryservice.dtos.loan;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
