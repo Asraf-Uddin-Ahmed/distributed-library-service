@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Loan request</title>
+
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <h1>Loan Form</h1>
+        <form th:action="${actionUrl}" th:object="${loanRequestDto}" method="post">
+            <div class="form-group">
+                <label for="searchUser">Search User</label>
+                <input type="text" class="form-control" id="searchUser" placeholder="Email or Username">
+                <!-- Display the user's name here based on search results -->
+                <div class="mt-2 alert alert-info">User: <span style="font-weight: bold;" id="userDetails"></span></div>
+                <input type="hidden" th:field="*{userId}" id="userId">
+                <!-- Display title validation error message -->
+                <small class="text-danger" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></small>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" class="form-control" th:field="*{dueDate}" id="dueDate">
+                <!-- Display title validation error message -->
+                <small class="text-danger" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></small>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.14/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            // Search for user on input change
+            $('#searchUser').on('input', function() {
+                var searchUser = $(this).val();
+                // Call API to search for user based on input criteria
+                // Replace with your API endpoint and logic to fetch user details
+                $.ajax({
+                    type: 'GET',
+                    url: '/users/' + searchUser,
+                    success: function(user) {
+                        // Display user details if found
+                        if (user) {
+                            $('#userDetails').text(user.name);
+                            // Set the user ID in the hidden field for form submission
+                            $('#userId').val(user.id);
+                        } else {
+                            // Clear user details and user ID if not found
+                            $('#userDetails').text('');
+                            $('#userId').val('');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error searching for user: ' + error);
+                        $('#userDetails').text('Not found yet...');
+                    }
+                });
+            });
+        });
+
+    </script>
+</section>
+
+</body>
+</html>

@@ -50,6 +50,7 @@
                         <td th:text="${book.description}"></td>
                         <td>
                             <a th:href="@{/books/{id}/edit(id=${book.id})}" class="btn btn-info">Edit</a>
+                            <a th:href="@{/books/{id}/loan-request/initiate(id=${book.id})}" class="btn btn-warning">Transfer</a>
                         </td>
                         <!-- Add other relevant columns here -->
                     </tr>
