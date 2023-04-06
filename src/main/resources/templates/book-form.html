@@ -12,10 +12,6 @@
     <div class="container">
         <h1>Book Form</h1>
         <form action="/books/new" th:object="${bookRequestDto}" method="post">
-            <!-- Display validation errors, if any -->
-            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-                <p th:each="error : ${#fields.errors('*')}" th:text="${error}"></p>
-            </div>
             <!-- Book Title -->
             <div class="form-group">
                 <label for="title">Title</label>
@@ -41,6 +37,8 @@
             <div class="form-group">
                 <label for="isbn">ISBN</label>
                 <input type="text" class="form-control" id="isbn" th:field="*{isbn}"/>
+                <!-- Display isbn validation error message -->
+                <small class="text-danger" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></small>
             </div>
             <!-- Book Publication Date -->
             <div class="form-group">
@@ -78,7 +76,10 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary">Save</button>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary col-md-12">Save</button>
+            </div>
         </form>
     </div>
 

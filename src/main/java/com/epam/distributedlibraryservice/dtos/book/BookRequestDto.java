@@ -3,6 +3,7 @@ package com.epam.distributedlibraryservice.dtos.book;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.validator.constraints.ISBN;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
@@ -21,6 +22,7 @@ public class BookRequestDto {
     @NotBlank
     private String publisher;
 
+    @ISBN
     private String isbn;
 
     @NotNull
