@@ -4,4 +4,6 @@ import com.epam.distributedlibraryservice.entities.Book;
 
 public interface BookService {
     void save(Book book);
+
+    Book getById(int id);
 }

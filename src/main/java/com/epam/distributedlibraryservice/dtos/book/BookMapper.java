@@ -21,4 +21,18 @@ public class BookMapper {
         book.setDescription(bookRequestDto.getDescription());
         return book;
     }
+
+    public BookRequestDto getBookRequestDto(Book book) {
+        BookRequestDto bookRequestDto = new BookRequestDto();
+        bookRequestDto.setTitle(book.getTitle());
+        bookRequestDto.setAuthor(book.getAuthor());
+        bookRequestDto.setPublisher(book.getPublisher());
+        bookRequestDto.setIsbn(book.getIsbn());
+        bookRequestDto.setPublicationDate(book.getPublicationDate());
+        bookRequestDto.setGenres(book.getGenres());
+        bookRequestDto.setNumberOfPages(book.getNumberOfPages());
+        bookRequestDto.setTags(book.getTags());
+        bookRequestDto.setDescription(book.getDescription());
+        return bookRequestDto;
+    }
 }
