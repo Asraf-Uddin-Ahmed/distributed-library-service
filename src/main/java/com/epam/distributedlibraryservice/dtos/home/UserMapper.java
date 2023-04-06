@@ -1,5 +1,6 @@
 package com.epam.distributedlibraryservice.dtos.home;
 
+import com.epam.distributedlibraryservice.dtos.user.UserResponseDto;
 import com.epam.distributedlibraryservice.entities.User;
 import org.springframework.stereotype.Component;
 
@@ -14,5 +15,14 @@ public class UserMapper {
         user.setName(userRequestDto.getUsername());
         user.setUserStatus("ACTIVE");
         return user;
+    }
+
+    public UserResponseDto getUserResponseDto(User user) {
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
+        userResponseDto.setUsername(user.getUsername());
+        userResponseDto.setEmail(user.getEmail());
+        userResponseDto.setName(user.getName());
+        return userResponseDto;
     }
 }

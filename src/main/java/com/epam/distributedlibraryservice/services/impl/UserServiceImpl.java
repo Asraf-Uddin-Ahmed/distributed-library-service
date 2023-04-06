@@ -50,4 +50,14 @@ public class UserServiceImpl implements UserService {
         }
         throw new IllegalStateException("Cannot find the current user");
     }
+
+    @Override
+    public User getFirstByEmail(String email) {
+        return userRepository.findFirstByEmail(email);
+    }
+
+    @Override
+    public User getById(int userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
 }
