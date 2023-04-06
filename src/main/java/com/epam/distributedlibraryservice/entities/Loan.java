@@ -20,7 +20,7 @@ public class Loan {
     private User user;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "loan_date", nullable = false)
+    @Column(name = "loan_date")
     private Date loanDate;
 
     @Temporal(TemporalType.DATE)
