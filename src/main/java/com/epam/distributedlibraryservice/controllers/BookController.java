@@ -36,7 +36,7 @@ public class BookController {
         }
         Book book = bookMapper.getBookEntity(bookRequestDto);
         bookService.save(book);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/books/{id}/edit")
@@ -55,7 +55,7 @@ public class BookController {
         Book book = bookMapper.getBookEntity(bookRequestDto);
         book.setId(id);
         bookService.save(book);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
 

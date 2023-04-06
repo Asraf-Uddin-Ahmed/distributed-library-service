@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <h1>Dashboard</h1>
+        <hr>
+        <form th:action="@{/dashboard}" method="get">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" th:value="${param.title != null ? param.title : ''}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" th:value="${param.author != null ? param.author : ''}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="genres">Genre</label>
+                    <input type="text" class="form-control" id="genres" name="genres" th:value="${param.genres != null ? param.genres : ''}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="publicationDate">Publication Date</label>
+                    <input type="date" class="form-control" id="publicationDate" name="publicationDate"
+                           th:value="${param.publicationDate != null ? param.publicationDate : ''}">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a href="/dashboard" class="btn btn-secondary ml-2">Clear</a>
+        </form>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Filtered Books</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Description</th>
+                        <th>Genre</th>
+                        <th>Publication Date</th>
+                        <!-- Add other relevant columns here -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Loop through filtered books and render each book row -->
+                    <tr th:each="book : ${books}">
+                        <td th:text="${book.title}"></td>
+                        <td th:text="${book.author}"></td>
+                        <td th:text="${book.description}"></td>
+                        <td th:text="${book.genres}"></td>
+                        <td th:text="${book.publicationDate}"></td>
+                        <!-- Add other relevant columns here -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

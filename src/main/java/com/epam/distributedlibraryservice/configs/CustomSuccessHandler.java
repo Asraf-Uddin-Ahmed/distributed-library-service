@@ -37,7 +37,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
                 userService.save(userMapper.getUserEntity(requestDto));
             }
         }
-        String redirectUrl = "/";
+        String redirectUrl = "/dashboard";
         new DefaultRedirectStrategy().sendRedirect(request, response, redirectUrl);
     }
 

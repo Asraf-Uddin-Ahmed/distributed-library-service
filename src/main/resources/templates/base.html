@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <th:block th:if="${#request.isUserInRole('ROLE_USER')}">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 </th:block>
                 <th:block th:if="${!(#request.isUserInRole('ROLE_USER'))}">
