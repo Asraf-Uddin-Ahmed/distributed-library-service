@@ -3,6 +3,7 @@ package com.epam.distributedlibraryservice.dtos.book;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class BookRequestDto {
 
     @NotNull
     @PastOrPresent
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date publicationDate;
 
     private String genres;
