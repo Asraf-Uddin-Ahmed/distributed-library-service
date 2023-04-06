@@ -10,5 +10,5 @@ public interface BookService {
 
     Book getById(int id);
 
-    List<Book> getBooksBy(String title, String author, String genres, Date publicationDate);
+    List<Book> getBooksBy(String title, String author, String genres, Date publicationDate, int currentKeeperId);
 }
