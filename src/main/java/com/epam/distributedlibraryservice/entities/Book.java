@@ -70,6 +70,14 @@ CREATE TABLE book (
     @JoinColumn(name = "current_keeper_id", nullable = false)
     private User currentKeeper;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_time", nullable = false, length = 19)
+    private Date creationTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_time", nullable = false, length = 19)
+    private Date updateTime;
+
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
     private Set<BookAudit> bookAudits;
 
@@ -78,6 +86,17 @@ CREATE TABLE book (
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
+
+    @PrePersist
+    protected void onCreate() {
+        creationTime = new Date();
+        updateTime = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateTime = new Date();
+    }
 
     public Integer getId() {
         return id;
@@ -197,5 +216,13 @@ CREATE TABLE book (
 
     public void setReservations(Set<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
     }
 }
