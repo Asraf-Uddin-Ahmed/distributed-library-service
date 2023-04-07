@@ -2,6 +2,7 @@ package com.epam.distributedlibraryservice.services;
 
 import com.epam.distributedlibraryservice.entities.Loan;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface LoanService {
@@ -12,4 +13,10 @@ public interface LoanService {
     List<Loan> getAllReceivedLoans();
 
     List<Loan> getAllSentLoans();
+
+    @Transactional
+    void rejectLoanRequest(Loan loan);
+
+    @Transactional
+    void acceptLoanRequest(Loan loan);
 }

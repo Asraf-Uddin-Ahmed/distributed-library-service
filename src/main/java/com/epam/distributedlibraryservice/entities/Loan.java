@@ -1,5 +1,7 @@
 package com.epam.distributedlibraryservice.entities;
 
+import com.epam.distributedlibraryservice.constants.LoanStatus;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -26,6 +28,14 @@ public class Loan {
     @Temporal(TemporalType.DATE)
     @Column(name = "due_date", nullable = false)
     private Date dueDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, columnDefinition = "ENUM('PENDING', 'APPROVED', 'REJECTED')")
+    private LoanStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "from_user_id", nullable = false)
+    private User fromUser;
 
     public Integer getId() {
         return id;
@@ -65,5 +75,21 @@ public class Loan {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
+
+    public User getFromUser() {
+        return fromUser;
+    }
+
+    public void setFromUser(User fromUser) {
+        this.fromUser = fromUser;
     }
 }

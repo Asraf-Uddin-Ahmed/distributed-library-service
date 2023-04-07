@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -47,7 +44,7 @@ public class LoanController {
 
         Book book = bookService.getById(id);
         User user = userService.getById(loanRequestDto.getUserId());
-        Loan loan = loanMapper.getLoanEntity(loanRequestDto, book, user);
+        Loan loan = loanMapper.getLoanEntity(loanRequestDto, book, user, userService.getCurrentUser());
         // Call the loanService to initiate the loan request
         loanService.save(loan);
 
@@ -59,6 +56,27 @@ public class LoanController {
         List<Loan> loans = loanService.getAllSentLoans();
         model.addAttribute("loans", loans);
         return "loan-sent";
+    }
+
+    @GetMapping("/books/loan-requests/received")
+    public String showLoanReceived(Model model) {
+        List<Loan> loans = loanService.getAllReceivedLoans();
+        model.addAttribute("loans", loans);
+        return "loan-received";
+    }
+
+    @PostMapping("/books/loan-requests/received/{id}")
+    public String handleLoanRequestAction(@PathVariable("id") Integer id, @RequestParam("action") String action) {
+        Loan loan = loanService.getById(id);
+        // Logic to handle loan request action based on "action" parameter
+        if ("accept".equals(action)) {
+            loanService.acceptLoanRequest(loan);
+        } else if ("reject".equals(action)) {
+            loanService.rejectLoanRequest(loan);
+        }
+
+        // Redirect to appropriate page after handling loan request action
+        return "redirect:/books/loan-requests/received";
     }
 
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Request Received</title>
+
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <h1>Request Received</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Book Keeper</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.book.title}"></td>
+                <td th:text="${loan.book.currentKeeper.username}"></td>
+                <td th:text="${loan.dueDate}"></td>
+                <td>
+                    <form th:action="@{/books/loan-requests/received/{id}(id=${loan.id})}" method="post">
+                        <input type="hidden" name="action" value="accept"/> <!-- Add action parameter for accept action -->
+                        <button type="submit" class="btn btn-success">Accept</button>
+                    </form>
+                    <form th:action="@{/books/loan-requests/received/{id}(id=${loan.id})}" method="post">
+                        <input type="hidden" name="action" value="reject"/> <!-- Add action parameter for reject action -->
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>
