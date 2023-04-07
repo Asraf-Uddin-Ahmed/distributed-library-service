@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +51,14 @@ public class LoanController {
         // Call the loanService to initiate the loan request
         loanService.save(loan);
 
-        return "redirect:/books/loan-requests";
+        return "redirect:/books/loan-requests/sent";
+    }
+
+    @GetMapping("/books/loan-requests/sent")
+    public String showLoanSent(Model model) {
+        List<Loan> loans = loanService.getAllSentLoans();
+        model.addAttribute("loans", loans);
+        return "loan-sent";
     }
 
 }
