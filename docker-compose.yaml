@@ -11,4 +11,19 @@ services:
       MYSQL_ROOT_PASSWORD: "1234"
       MYSQL_DATABASE: "distributed_library_service"
     restart: always
-
+#    networks:
+#      - app-network
+#
+#  app:
+#    build: .
+#    container_name: distributed-library-service
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mysql
+#    networks:
+#      - app-network
+#
+#networks:
+#  app-network:
+#    driver: bridge
