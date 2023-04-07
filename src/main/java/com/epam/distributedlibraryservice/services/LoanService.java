@@ -21,4 +21,6 @@ public interface LoanService {
     void acceptLoanRequest(Loan loan);
 
     List<Loan> getLoanHistory();
+
+    List<Loan> getLoansByUserId(int userId);
 }

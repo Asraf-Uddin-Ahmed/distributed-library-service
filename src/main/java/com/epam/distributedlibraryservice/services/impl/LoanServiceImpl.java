@@ -72,4 +72,9 @@ public class LoanServiceImpl implements LoanService {
         int currentUserId = userService.getCurrentUser().getId();
         return loanRepository.findByUserIdOrFromUserId(currentUserId, currentUserId);
     }
+
+    @Override
+    public List<Loan> getLoansByUserId(int userId) {
+        return loanRepository.findByUserId(userId);
+    }
 }

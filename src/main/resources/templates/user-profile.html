@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Profile</title>
+
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <h1 class="text-center">User Profile</h1>
+        <hr>
+        <h2 th:text="${user.name}" class="text-center mb-4">User Name</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="mb-3">Contributed Books</h3>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="book, iterStat : ${contributedBooks}">
+                        <div class="d-flex justify-content-between">
+                            <span th:text="${book.title}">Book Title</span>
+                            <span th:text="${book.creationTime}" class="text-muted">Contribution Date</span>
+                        </div>
+                        <div th:if="${!iterStat.last}" class="border-bottom mt-2"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="mb-3">Borrowed Books</h3>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="loan, iterStat : ${borrowedBooks}">
+                        <div class="d-flex justify-content-between">
+                            <span th:text="${loan.book.title}">Book Title</span>
+                            <span th:text="${loan.loanDate}" class="text-muted">Loan Date</span>
+                        </div>
+                        <div th:if="${!iterStat.last}" class="border-bottom mt-2"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
