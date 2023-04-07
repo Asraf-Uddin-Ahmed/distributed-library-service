@@ -1,8 +1,6 @@
 package com.epam.distributedlibraryservice.dtos.book;
 
-import com.epam.distributedlibraryservice.dtos.home.UserRequestDto;
 import com.epam.distributedlibraryservice.entities.Book;
-import com.epam.distributedlibraryservice.entities.User;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -29,7 +29,7 @@ CREATE TABLE book (
     PRIMARY KEY (id),
     FOREIGN KEY (contributor_id) REFERENCES user(id),
     FOREIGN KEY (current_keeper_id) REFERENCES user(id)
-);
+)
     * COPILOT: failed to generate and partially correct to suggest code snippet
     * */
 

@@ -19,6 +19,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class BookController {
 
+    private static final String BOOK_FORM = "book-form";
+
     private final BookService bookService;
     private final BookMapper bookMapper;
 
@@ -26,13 +28,13 @@ public class BookController {
     public String showNewBookForm(Model model) {
         model.addAttribute("bookRequestDto", new BookRequestDto());
         model.addAttribute("actionUrl", "/books/new");
-        return "book-form";
+        return BOOK_FORM;
     }
 
     @PostMapping("/books/new")
     public String createBook(@ModelAttribute("bookRequestDto") @Valid BookRequestDto bookRequestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "book-form";
+            return BOOK_FORM;
         }
         Book book = bookMapper.getBookEntity(bookRequestDto);
         bookService.save(book);
@@ -44,13 +46,13 @@ public class BookController {
         Book book = bookService.getById(id);
         model.addAttribute("bookRequestDto", bookMapper.getBookRequestDto(book));
         model.addAttribute("actionUrl", "/books/" + id + "/edit");
-        return "book-form";
+        return BOOK_FORM;
     }
 
     @PostMapping("/books/{id}/edit")
     public String editBook(@PathVariable("id") int id, @ModelAttribute("bookRequestDto") @Valid BookRequestDto bookRequestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "book-form";
+            return BOOK_FORM;
         }
         Book book = bookMapper.getBookEntity(bookRequestDto);
         book.setId(id);

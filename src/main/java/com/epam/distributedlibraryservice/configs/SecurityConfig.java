@@ -1,6 +1,5 @@
 package com.epam.distributedlibraryservice.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -18,19 +17,13 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Order(1)
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private UserDetailsService appUserDetailsService;
-    @Autowired
-    private AuthenticationSuccessHandler successHandler;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationSuccessHandler successHandler) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/register/**", "/login/**").permitAll()
@@ -45,7 +38,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider getDaoAuthProvider() {
+    public DaoAuthenticationProvider getDaoAuthProvider(UserDetailsService appUserDetailsService, BCryptPasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(appUserDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);

@@ -4,7 +4,6 @@ import com.epam.distributedlibraryservice.entities.Book;
 import com.epam.distributedlibraryservice.services.BookService;
 import com.epam.distributedlibraryservice.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class DashboardController {
     public String showDashboard(@RequestParam(required = false) String title,
                                 @RequestParam(required = false) String author,
                                 @RequestParam(required = false) String genres,
-                                @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date publicationDate,
+                                @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date publicationDate,
                                 Model model) {
         int currentKeeperId = userService.getCurrentUser().getId();
         // Call service method to filter books based on given criteria
