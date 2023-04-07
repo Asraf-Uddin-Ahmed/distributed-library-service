@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Loan History</title>
+
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <h1>Loan History</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Request Sent User</th>
+                <th>Request Received User</th>
+                <th>Loan Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through the loans and display loan data -->
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.book.title}"></td>
+                <td th:text="${loan.fromUser.username}"></td>
+                <td th:text="${loan.user.username}"></td>
+                <td th:text="${loan.loanDate}"></td>
+                <td th:text="${loan.dueDate}"></td>
+                <td th:text="${loan.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>

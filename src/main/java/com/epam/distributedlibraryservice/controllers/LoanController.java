@@ -79,4 +79,11 @@ public class LoanController {
         return "redirect:/books/loan-requests/received";
     }
 
+    @GetMapping("/books/loan-requests/history")
+    public String showReceivedLoanRequests(Model model) {
+        List<Loan> loans = loanService.getLoanHistory();
+        model.addAttribute("loans", loans);
+        return "loan-history";
+    }
+
 }

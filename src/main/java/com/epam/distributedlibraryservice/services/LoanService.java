@@ -19,4 +19,6 @@ public interface LoanService {
 
     @Transactional
     void acceptLoanRequest(Loan loan);
+
+    List<Loan> getLoanHistory();
 }

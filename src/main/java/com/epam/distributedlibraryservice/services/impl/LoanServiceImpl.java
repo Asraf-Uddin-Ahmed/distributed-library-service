@@ -52,7 +52,7 @@ public class LoanServiceImpl implements LoanService {
     public void rejectLoanRequest(Loan loan) {
         loan.setLoanDate(new Date());
         loan.setStatus(LoanStatus.REJECTED);
-        loanRepository.delete(loan);
+        loanRepository.save(loan);
     }
 
     @Override
@@ -65,5 +65,11 @@ public class LoanServiceImpl implements LoanService {
         Book book = loan.getBook();
         book.setCurrentKeeper(loan.getUser());
         bookRepository.save(book);
+    }
+
+    @Override
+    public List<Loan> getLoanHistory() {
+        int currentUserId = userService.getCurrentUser().getId();
+        return loanRepository.findByUserIdOrFromUserId(currentUserId, currentUserId);
     }
 }

@@ -14,5 +14,5 @@ public interface LoanRepository extends PagingAndSortingRepository<Loan, Integer
 
     List<Loan> findByFromUserIdAndStatusAndDueDateAfter(Integer fromUserId, LoanStatus status, Date currentDate);
 
-
+    List<Loan> findByUserIdOrFromUserId(int userId, int fromUserId);
 }
