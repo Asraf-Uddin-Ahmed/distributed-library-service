@@ -110,7 +110,7 @@ class UserServiceTest {
 	}
 
 	@Test
-	void whenFindByEmail_thenUserShouldBeFound() {
+	void whenGetByEmail_thenUserShouldBeFound() {
 		// Create a user with a username
 		User user = new User();
 		user.setEmail("asraf@test.com");
@@ -128,7 +128,7 @@ class UserServiceTest {
 	}
 
 	@Test
-	void whenFindByNonExistingEmail_thenUserShouldBeNull() {
+	void whenGetByNonExistingEmail_thenUserShouldBeNull() {
 		// Create a user with a username
 		User user = new User();
 		user.setEmail("asraf@test.com");
@@ -144,7 +144,7 @@ class UserServiceTest {
 	}
 
 	@Test
-	void whenFindById_thenUserShouldBeFound() {
+	void whenGetById_thenUserShouldBeFound() {
 		// Create a user with a username
 		User user = new User();
 		user.setId(1);
@@ -163,7 +163,7 @@ class UserServiceTest {
 	}
 
 	@Test
-	void whenFindByNonID_thenUserShouldBeNull() {
+	void whenGetByNonExistingId_thenUserShouldBeNull() {
 		// Create a user with a username
 		User user = new User();
 		user.setId(1);
