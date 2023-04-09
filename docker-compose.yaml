@@ -10,20 +10,24 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "1234"
       MYSQL_DATABASE: "distributed_library_service"
+      require_secure_transport: "OFF"
     restart: always
-#    networks:
-#      - app-network
-#
-#  app:
-#    build: .
-#    container_name: distributed-library-service
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - mysql
-#    networks:
-#      - app-network
-#
-#networks:
-#  app-network:
-#    driver: bridge
+    networks:
+      - app-network
+
+  app:
+    build: .
+    container_name: distributed-library-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/distributed_library_service?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1234
+    networks:
+      - app-network
+
+networks:
+  app-network:
